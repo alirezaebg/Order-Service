@@ -20,6 +20,14 @@ connection.once('open', () => {
     console.log("Connection to the Mongodb database established successfully!");
 })
 
+// routes
+const inventoriesRouter = require('./routes/inventories');
+// const ordersRouter = require('./routes/orders');
+
+app.use('/inventories', inventoriesRouter);
+// app.use('/orders', ordersRouter);
+
+// spin up the server
 app.listen(port, () => {
    console.log(`server is up and running on port ${port}`); 
 })
