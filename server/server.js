@@ -22,10 +22,10 @@ connection.once('open', () => {
 
 // routes
 const inventoriesRouter = require('./routes/inventories');
-// const ordersRouter = require('./routes/orders');
+const ordersRouter = require('./routes/orders');
 
 app.use('/inventories', inventoriesRouter);
-// app.use('/orders', ordersRouter);
+app.use('/orders', ordersRouter);
 
 // spin up the server
 app.listen(port, () => {
