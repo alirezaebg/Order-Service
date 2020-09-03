@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 30vmin;
   pointer-events: none;
 }
 
@@ -14,18 +14,18 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 1rem 2rem;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+button {
+  margin: 1rem 2rem;
+  width: 200px;
 }
 
 @keyframes App-logo-spin {
@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+/* Home */
+input {
+  height: 50px;
+  min-width: 300px;
+  margin: 2% 0;
+  font-size: 1.2rem;
+}
+
+/* Create */
+.create-div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 2% 7%;
+}
+
+
