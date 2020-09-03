@@ -6,7 +6,7 @@ require('dotenv').config();
 
 // express app
 const app = express();
-const port = process.env.PORT || 3000;   // in case of deployment falls back on PORT
+const port = process.env.PORT || 5000;   // in case of deployment falls back on PORT
 
 // middlewares
 app.use(cors());

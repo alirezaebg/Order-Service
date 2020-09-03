@@ -1,58 +1,64 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import "bootstrap/dist/css/bootstrap.min.css"
+import { withRouter } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
 import logo from '../icons/logo.svg';
 import '../App.css';
 
 class Home extends Component {
 
     state = {
-        query: '',
         isValidEmail: true,
     }
 
+    // handle button click event
     handleClick = (e) => {
-        console.log(e.target)
         e.preventDefault();
         let valid = false;
-        if (this.validateEmail(this.state.query)) {
+        if (this.validateEmail(this.props.query)) {
             valid = true;  //email is valid
-            this.props.history.push('/create');
+            if (e.target.name === 'newOrder') this.props.history.push('/create')
+            else this.props.history.push('/view')
         }
-        this.setState({isValidEmail: valid});
+        this.setState({ isValidEmail: valid })
+        this.props.handleChange('')
     }
 
+    // function to validate an email address
     validateEmail = (email) => {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
 
-    handleChange = (e) => {
-        const query = e.target.value;
-        this.setState({query})
-    }
-
     render() {
-        const { query } = this.state
+        const { query, handleChange } = this.props    //destructuring
         return (
             <div>
                 <img src={logo} className="App-logo" alt="logo" />
                 <h1 className="App-header">Welcome to Treez Order Service Portal</h1>
                 <input
-                    className = 'home-input'
-                    type = 'text'
-                    placeholder = 'Enter your email'
-                    value = {query}
-                    onChange = {this.handleChange}
+                    className='home-input'
+                    type='text'
+                    placeholder='Enter your email'
+                    value={query}
+                    onChange={(e) => handleChange(e.target.value)}
                 />
                 {!this.state.isValidEmail && <p>Please enter a valid email address!</p>}
                 <div>
-                    <Link to='/create' onClick={this.handleClick}><button className="btn btn-primary btn-lg">Create new order</button></Link>
-                    <Link to='/view'><button className="btn btn-primary btn-lg">View orders</button></Link>
+                    <Link
+                        to='/create'
+                        onClick={this.handleClick}>
+                        <button id="home-btn" name="newOrder" className="btn btn-primary btn-lg">Create new order</button>
+                    </Link>
+                    <Link
+                        to='/view'
+                        onClick={this.handleClick}>
+                        <button id="home-btn" name="viewOrder" className="btn btn-primary btn-lg">View orders</button>
+                    </Link>
                 </div>
             </div>
         )
     }
 }
 
-export default Home;
+export default withRouter(Home);
