@@ -23,7 +23,7 @@ class App extends Component {
           <Home query={this.state.emailQuery} handleChange={this.handleChange} />
         )} />
         <Route path='/create' render={() => (
-          <Create query={this.state.emailQuery} />
+          <Create email={this.state.emailQuery} />
         )} />
         <Route path='/view'
           component={View}

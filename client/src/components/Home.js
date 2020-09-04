@@ -21,7 +21,6 @@ class Home extends Component {
             else this.props.history.push('/view')
         }
         this.setState({ isValidEmail: valid })
-        this.props.handleChange('')
     }
 
     // function to validate an email address
